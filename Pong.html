@@ -1,0 +1,60 @@
+<html>
+<head>
+<title>
+Pong
+</title>
+</head>
+<body bgcolor="#000000">
+<canvas id="canvas" width="600" height="600"></canvas>
+<script type="text/javascript">
+
+	var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+
+      var playerPaddleY = canvas.height/2;
+      var computerPaddleY = canvas.height/2;
+
+      document.onkeydown = checkKey;
+            function checkKey(e) {
+
+            e = e || window.event;
+
+            if (e.keyCode == '38') {
+                  if(playerPaddleY>20){
+				playerPaddleY-=20;
+			}
+            }
+            if (e.keyCode == '40') {
+                  if(playerPaddleY<canvas.height-125){
+                        playerPaddleY+=20;
+                  }
+            }
+      }
+
+
+
+      function drawScreen(){
+
+            ctx.canvas.width = window.innerWidth - 25;
+            ctx.canvas.height = window.innerHeight - 25;
+
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(0,0,0,0)";
+
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.fillStyle = "rgba(100,100,100,1)";
+
+            ctx.fillRect(10,playerPaddleY,25,100);
+            ctx.fill();
+
+      }
+
+      var intervalID = window.setInterval(drawScreen,10);
+
+</script>
+
+</body>
+</html>
